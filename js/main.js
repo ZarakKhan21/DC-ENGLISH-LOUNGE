@@ -209,26 +209,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ===================== CONTACT FORM ===================== */
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      const btn = contactForm.querySelector('button[type="submit"]');
-      const originalText = btn.textContent;
-      btn.textContent = 'Sending…';
-      btn.disabled = true;
-
-      // Simulate send (replace with real backend/formspree/emailjs)
-      setTimeout(() => {
-        contactForm.style.display = 'none';
-        const success = document.getElementById('formSuccess');
-        if (success) {
-          success.classList.add('show');
-        }
-      }, 1400);
-    });
-  }
+  // Form submission is handled by an inline script in contact.html
+  // (mailto: handler — no backend required)
 
   /* ===================== SMOOTH SCROLL (anchors) ===================== */
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {

@@ -2681,13 +2681,103 @@ h5 {
 
 /* ===================== RESPONSIVE ===================== */
 
-/* Tablet */
+/* ── IMAGE CONTAINERS: consistent aspect-ratio + object-fit ─────────────── */
+.hero-image,
+.study-image,
+.abroad-image,
+.about-image,
+.about-hero-img,
+.about-img-placeholder,
+.sa-img-placeholder,
+.abroad-img-placeholder {
+  overflow: hidden;
+}
+
+.hero-image img,
+.study-image img,
+.abroad-image img,
+.about-image img,
+.about-hero-img img,
+.about-img-placeholder img,
+.sa-img-placeholder img,
+.abroad-img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── CARD HEIGHTS: auto height + align-items: start on grids ────────────── */
+.why-grid,
+.courses-grid,
+.abroad-grid,
+.career-grid,
+.values-grid,
+.sa-stats-grid,
+.about-stats-grid {
+  align-items: start;
+}
+
+.why-card,
+.course-card,
+.abroad-card,
+.career-card,
+.value-card,
+.review-card {
+  height: auto;
+}
+
+/* ── REVIEW SLIDER: correct card widths for 3 / 2 / 1 layout ────────────── */
+/* Desktop: 3 cards visible */
+.review-card {
+  min-width: calc((100% - 48px) / 3);
+  width: calc((100% - 48px) / 3);
+  flex-shrink: 0;
+  box-sizing: border-box;
+  height: auto;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  min-height: unset;
+}
+
+.review-text {
+  font-size: 0.88rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  flex: 1;
+  overflow: visible;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.reviews-slider-wrap {
+  overflow: hidden;
+}
+
+.reviews-track {
+  align-items: stretch;
+}
+
+/* ── SECTION HEADER: ensure margin scales on small screens ─────────────── */
+.section-header {
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+/* ===================== TABLET (max-width: 1024px) ===================== */
 @media (max-width: 1024px) {
+
+  /* Spacing */
+  .section {
+    padding: 72px 0;
+  }
+
+  /* Hero */
   .hero-inner {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
     min-height: auto;
-    padding: 80px 24px 60px;
+    padding: 72px 24px 56px;
   }
 
   .hero-visual {
@@ -2709,8 +2799,16 @@ h5 {
 
   .hero-stats {
     justify-content: center;
+    gap: 32px;
   }
 
+  /* Review slider: 2 cards on tablet */
+  .review-card {
+    min-width: calc((100% - 24px) / 2);
+    width: calc((100% - 24px) / 2);
+  }
+
+  /* Grids → 2 columns */
   .why-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2719,14 +2817,27 @@ h5 {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .abroad-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .career-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
+  .sa-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Two-column content layouts → single column */
   .about-preview-inner {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -2742,13 +2853,43 @@ h5 {
     display: none;
   }
 
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 36px;
+  .sa-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
+  .sa-inner.reverse {
+    direction: ltr;
+  }
+
+  .about-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-hero-img-wrap {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .about-story-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .contact-form-wrap {
+    padding: 32px;
+  }
+
+  /* Courses page */
   .cdc-body {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .cdc-header {
@@ -2757,50 +2898,53 @@ h5 {
     gap: 16px;
   }
 
-  .sa-inner {
-    grid-template-columns: 1fr;
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
   }
 
-  .sa-inner.reverse {
-    direction: ltr;
+  /* Typography scale */
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
   }
 
-  .sa-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .hero-title {
+    font-size: clamp(1.9rem, 4vw, 3rem);
   }
 
-  .about-hero-inner {
-    grid-template-columns: 1fr;
+  /* Card padding reduce */
+  .why-card {
+    padding: 24px 20px;
   }
 
-  .about-hero-img-wrap {
-    max-width: 380px;
-    margin: 0 auto;
+  .career-card {
+    padding: 28px 24px;
   }
 
-  .about-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .abroad-card-body {
+    padding: 20px;
   }
 
-  .about-story-grid {
-    grid-template-columns: 1fr;
+  /* Image containers — keep aspect ratios */
+  .abroad-image {
+    aspect-ratio: 16/9;
   }
 
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-form-wrap {
-    padding: 32px;
+  .sa-img-placeholder {
+    aspect-ratio: 16/9;
   }
 }
 
-/* Mobile */
+/* ===================== MOBILE (max-width: 768px) ===================== */
 @media (max-width: 768px) {
+
+  /* Spacing */
   .section {
-    padding: 64px 0;
+    padding: 56px 0;
   }
 
+  /* Navbar */
   .nav-links {
     display: none;
   }
@@ -2809,24 +2953,198 @@ h5 {
     display: flex;
   }
 
+  /* Hero */
+  .hero-inner {
+    padding: 64px 20px 48px;
+    gap: 32px;
+  }
+
   .hero-title {
-    font-size: 2rem;
+    font-size: clamp(1.7rem, 6vw, 2.2rem);
   }
 
   .hero-stats {
-    gap: 24px;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
   }
 
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: 36px;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 5.5vw, 1.75rem);
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* Grids → 1 column */
   .why-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .courses-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
+  .abroad-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .career-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .values-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .sa-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .about-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Card paddings */
+  .why-card {
+    padding: 20px 16px;
+  }
+
+  .career-card {
+    padding: 24px 20px;
+  }
+
+  .course-card-body {
+    padding: 20px;
+  }
+
+  .course-card-header {
+    padding: 24px 20px 18px;
+    min-height: 90px;
+  }
+
+  .abroad-card-body {
+    padding: 20px 16px;
+  }
+
+  /* Images: enforce 16:9 on cards for consistency */
+  .abroad-image {
+    aspect-ratio: 16/9;
+  }
+
+  .hero-image {
+    aspect-ratio: 4/3;
+  }
+
+  /* About section */
+  .about-hero-inner {
+    gap: 32px;
+  }
+
+  .about-hero-img-wrap {
+    max-width: 100%;
+  }
+
+  .about-hero-img {
+    aspect-ratio: 4/3;
+  }
+
+  .about-preview-inner {
+    gap: 32px;
+    padding: 28px 20px;
+  }
+
+  /* Study abroad */
+  .sa-inner {
+    gap: 32px;
+  }
+
+  .sa-img-placeholder {
+    aspect-ratio: 4/3;
+  }
+
+  .sa-features {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Review slider: 1 card on mobile */
+  .reviews-track {
+    gap: 16px;
+  }
+
+  .review-card {
+    min-width: 100%;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .review-card {
+    padding: 24px 20px;
+  }
+
+  /* Contact page */
+  .contact-form-wrap {
+    padding: 24px;
+  }
+
+  .contact-grid {
+    gap: 32px;
+  }
+
+  /* Courses page tabs */
+  .course-tabs {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .course-tab {
+    text-align: left;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 64px 0;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .cta-buttons .btn {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  /* Footer */
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -2838,55 +3156,15 @@ h5 {
     gap: 8px;
   }
 
-  .reviews-track {
-    gap: 16px;
+  /* Page banner */
+  .page-banner {
+    padding: 96px 0 48px;
   }
 
-  .review-card {
-    min-width: calc(100% - 0px);
-    height: auto;
-    overflow: visible;
-  }
-
-  .course-tabs {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .course-tab {
-    text-align: left;
-  }
-
-  .sa-features {
-    grid-template-columns: 1fr;
-  }
-
-  .values-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .cta-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .cta-buttons .btn {
-    width: 100%;
-    max-width: 320px;
-    justify-content: center;
-  }
-
+  /* WhatsApp float */
   .wa-float-wrap {
     right: 16px;
     bottom: 20px;
-  }
-
-  .wa-btn {
-    padding: 12px 14px 12px 14px;
   }
 
   .wa-label {
@@ -2898,51 +3176,97 @@ h5 {
     width: 56px;
     height: 56px;
     justify-content: center;
+    padding: 0;
   }
 
-  .hero-buttons {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .about-stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  /* Form */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 }
 
-/* Small Mobile */
+/* ===================== SMALL MOBILE (max-width: 480px) ===================== */
 @media (max-width: 480px) {
   .container {
     padding: 0 16px;
   }
 
-  .hero-title {
-    font-size: 1.75rem;
+  .section {
+    padding: 48px 0;
   }
 
+  .hero-inner {
+    padding: 56px 16px 40px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 7vw, 1.85rem);
+  }
+
+  .section-title {
+    font-size: clamp(1.25rem, 6vw, 1.6rem);
+  }
+
+  .section-header {
+    margin-bottom: 28px;
+  }
+
+  /* Stats: 2 per row on small */
   .about-stats-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .contact-form-wrap {
-    padding: 24px 20px;
+  .sa-stats-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
+  /* Contact form */
+  .contact-form-wrap {
+    padding: 20px 16px;
+  }
+
+  /* Navbar */
   .navbar-inner {
     padding: 0 16px;
   }
 
   .footer-bottom {
     font-size: 0.75rem;
+  }
+
+  /* Card detail page */
+  .cdc-header {
+    padding: 20px 24px;
+  }
+
+  .cdc-body {
+    padding: 24px;
+  }
+
+  /* About hero image: square on very small screens */
+  .about-hero-img {
+    aspect-ratio: 1/1;
+  }
+
+  /* Values grid: 2 per row on phones */
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Career section padding */
+  .career-card {
+    padding: 20px 16px;
+  }
+
+  /* Hero stats horizontal scroll safe */
+  .hero-stats {
+    gap: 16px;
+  }
+
+  .stat-num {
+    font-size: 1.5rem;
   }
 }
 
@@ -2951,12 +3275,9 @@ h5 {
   max-width: 520px;
   border-radius: 24px;
   overflow: hidden;
-
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
-
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -2970,27 +3291,20 @@ h5 {
 .study-image {
   width: 100%;
   aspect-ratio: 4/3;
-
   border-radius: 20px;
-  overflow: visible;
-
+  overflow: hidden;
   position: relative;
-
   box-shadow: 0 16px 48px rgba(30, 58, 138, 0.14);
-
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .study-image img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   display: block;
-
   transition: transform 0.5s ease;
 }
 
@@ -3001,27 +3315,20 @@ h5 {
 .abroad-image {
   width: 100%;
   aspect-ratio: 4/3;
-
   border-radius: 20px;
   overflow: hidden;
-
   position: relative;
-
   box-shadow: 0 12px 35px rgba(30, 58, 138, 0.14);
-
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .abroad-image img {
   width: 100%;
   height: 100%;
-
   object-fit: cover;
   display: block;
-
   transition: transform 0.5s ease;
 }
 
@@ -3032,27 +3339,20 @@ h5 {
 .about-image {
   width: 100%;
   max-width: 420px;
-
   border-radius: 24px;
   overflow: hidden;
-
   position: relative;
-
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
-
   border: 1px solid rgba(255, 255, 255, 0.15);
-
   box-shadow: 0 18px 50px rgba(0, 0, 0, 0.15);
 }
 
 .about-image img {
-  width: 110%;
+  width: 100%;
   height: 100%;
-
   display: block;
   object-fit: cover;
-
   transition: transform 0.5s ease;
 }
 
@@ -3060,79 +3360,14 @@ h5 {
   transform: scale(1.03);
 }
 
+/* Wrapper utility */
 .wrapper {
   max-width: 1200px;
   margin: 60px auto;
   padding: 0 20px;
 }
 
-/* Global Section Typography & Buttons */
-.btn {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: #0077b6;
-  color: #ffffff;
-}
-
-.btn-primary:hover {
-  background: #0096c7;
-  transform: translateY(-2px);
-}
-
-.section-eyebrow {
-  display: inline-block;
-  padding: 6px 14px;
-  background-color: #ffeae2;
-  color: #b06e4a;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  color: #1a1a1a;
-  margin: 0 0 16px 0;
-  line-height: 1.2;
-}
-
-.section-subtitle {
-  color: #666666;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  margin-bottom: 32px;
-}
-
-/* Animations */
-.fade-up {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUpAnim 0.8s ease forwards;
-}
-
-.fade-up-delay-2 {
-  animation-delay: 0.2s;
-}
-
-@keyframes fadeUpAnim {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ==========================================================================
-   2. Component Core Structure (The requested alignment fixes)
-   ========================================================================== */
+/* About preview section — homepage two-column layout */
 .about-preview-inner {
   display: flex;
   align-items: center;
@@ -3145,143 +3380,57 @@ h5 {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
 }
 
-/* Left Column: Image Area */
 .about-left {
   flex: 1;
-  min-width: 320px;
+  min-width: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.about-image {
-  width: 100%;
-  max-width: 420px;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-}
-
-.about-image img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
-/* The Glassmorphic Floating Accent Card */
-.about-accent-card {
-  margin-top: -30px;
-  /* Pulls the card upwards slightly over the image for deep visual layer styling */
-  position: relative;
-  z-index: 2;
-  width: 70%;
-  max-width: 260px;
-  padding: 16px 24px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.85);
-  /* fallback value */
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  text-align: center;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-}
-
-.aac-label {
-  font-size: 0.75rem;
-  color: #888888;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.aac-value {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 2px 0;
-}
-
-.aac-sub {
-  font-size: 0.8rem;
-  color: #555555;
-}
-
-/* Right Column: Feature Content Area */
 .about-content {
   flex: 1.2;
-  /* Gives slightly more structural visual ratio to the text content side */
-  min-width: 320px;
+  min-width: 280px;
   text-align: left;
-}
-
-.about-features {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.about-feature-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.afi-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background-color: #f0f4f8;
-  flex-shrink: 0;
-}
-
-.afi-text h4 {
-  margin: 0 0 6px 0;
-  color: #2c3e50;
-  font-size: 1.15rem;
-}
-
-.afi-text p {
-  margin: 0;
-  color: #6c757d;
-  font-size: 0.95rem;
-  line-height: 1.5;
 }
 
 .about-action-space {
   margin-top: 40px;
 }
 
-/* ==========================================================================
-   3. Media Queries / Responsive Breakpoints (992px)
-   ========================================================================== */
 @media (max-width: 992px) {
   .about-preview-inner {
     flex-direction: column;
     text-align: center;
-    padding: 35px 24px;
-    gap: 50px;
+    padding: 32px 20px;
+    gap: 36px;
   }
 
   .about-content {
     width: 100%;
+    min-width: unset;
     text-align: center;
   }
 
   .about-image {
     max-width: 100%;
   }
+}
 
-  .about-accent-card {
-    margin-top: 20px;
-    /* Pushes the accent card back below the image on mobile screen layers */
+@media (max-width: 768px) {
+  .about-preview-inner {
+    padding: 24px 16px;
+    gap: 28px;
+  }
+
+  .about-left {
+    min-width: unset;
     width: 100%;
   }
 
-  .about-feature-item {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
+  .about-content {
+    min-width: unset;
+    width: 100%;
   }
 }
 
@@ -3290,44 +3439,4 @@ h5 {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Fix review card to show full text */
-.review-card {
-  display: flex;
-  flex-direction: column;
-  height: auto;
-  /* Remove any fixed height */
-  min-height: unset;
-  /* Reset any min-height constraint */
-  overflow: visible;
-  /* Ensure nothing clips the content */
-}
-
-.review-text {
-  font-size: 0.88rem;
-  color: var(--gray-600);
-  line-height: 1.7;
-  flex: 1;
-  overflow: visible;
-  white-space: normal;
-  word-wrap: break-word;
-}
-
-
-.reviews-slider-wrap {
-  overflow: hidden;
-  /* Keep this for horizontal scroll */
-}
-
-.reviews-track {
-  align-items: stretch;
-  /* Make all cards same height */
-}
-
-.review-card {
-  height: auto;
-  min-height: 180px;
-  /* Optional: consistent card height */
-  box-sizing: border-box;
 }
